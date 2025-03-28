@@ -24,7 +24,7 @@ $htmlContent .= '</div>';
 $htmlContent .= '</div>';
 
 // Handle comment submission
-if ($_SERVER["REQUEST_METHOD"] == "POST" && forumIsLoggedIn()) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isUserLoggedIn()) {
     $postId = filter_input(INPUT_POST, "commentPostId", FILTER_SANITIZE_NUMBER_INT);
     $commentContent = trim($_POST["txtComment"] ?? "");
     $commentContent = htmlspecialchars($commentContent, ENT_QUOTES, 'UTF-8'); 
@@ -38,6 +38,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && forumIsLoggedIn()) {
             $htmlContent .= '<div class="alert alert-danger wow fadeIn" data-wow-delay="0.2s">Fehler beim Hinzufügen des Kommentars.</div>';
         }
     }
+}
+if (!isUserLoggedIn()) {
+    // Message for non-logged-in users
+    $htmlContent .= '<div class="alert alert-info wow fadeIn" data-wow-delay="0.2s">';
+    $htmlContent .= 'Bitte <a href="index.php?p=login">anmelden</a> oder <a href="index.php?p=signup">registrieren</a>, um Beiträge und Kommentare zu erstellen oder zu bearbeiten.';
+    $htmlContent .= '</div>';
 }
 
 // Pagination setup
@@ -93,7 +99,7 @@ if (empty($postsArray) && $currentPage == 1) {
         $htmlContent .= '<p class="text-muted">Gepostet von: ' . rpl($row["u_username"]) . ' am ' . $createdAt . '</p>';
 
         // Show edit/delete buttons for the post owner or admins
-        if (forumIsLoggedIn() && (forumIsAdmin() || $row["p_user_id"] == $_SESSION["userId"])) {
+        if (isUserLoggedIn() && (isUserAdmin() || $row["p_user_id"] == $_SESSION["userId"])) {
             $htmlContent .= '<p>';
             $htmlContent .= '<a href="index.php?p=edit&id=' . $row["p_id"] . '" class="btn btn-sm btn-warning">Bearbeiten</a> ';
             $htmlContent .= '<a href="index.php?p=delete&id=' . $row["p_id"] . '" class="btn btn-sm btn-danger" onclick="return confirm(\'Sind Sie sicher?\')">Löschen</a>';
@@ -116,7 +122,7 @@ if (empty($postsArray) && $currentPage == 1) {
                 $htmlContent .= '<p class="text-muted small">Kommentiert von: ' . rpl($comment["u_username"]) . ' am ' . rpl($comment["c_created_at"]) . '</p>';
 
                 // Show edit/delete buttons for the comment owner or admins
-                if (forumIsLoggedIn() && (forumIsAdmin() || $comment["c_user_id"] == $_SESSION["userId"])) {
+                if (isUserLoggedIn() && (isUserAdmin() || $comment["c_user_id"] == $_SESSION["userId"])) {
                     $htmlContent .= '<p>';
                     $htmlContent .= '<a href="index.php?p=edit_comment&id=' . $comment["c_id"] . '" class="btn btn-sm btn-warning">Bearbeiten</a> ';
                     $htmlContent .= '<a href="index.php?p=delete_comment&id=' . $comment["c_id"] . '" class="btn btn-sm btn-danger" onclick="return confirm(\'Sind Sie sicher?\')">Löschen</a>';
@@ -130,7 +136,7 @@ if (empty($postsArray) && $currentPage == 1) {
         $htmlContent .= '</div>';
 
         // Add comment toggle button and form for logged-in users
-        if (forumIsLoggedIn()) {
+        if (isUserLoggedIn()) {
             $htmlContent .= '<div class="comment-toggle mt-3">';
             $htmlContent .= '<button type="button" class="btn btn-outline-primary btn-sm toggle-comment-form" data-post-id="' . $row["p_id"] . '">Kommentar hinzufügen</button>';
             $htmlContent .= '<div class="comment-form mt-3" id="comment-form-' . $row["p_id"] . '" style="display: none;">';

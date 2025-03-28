@@ -32,11 +32,11 @@ include_once "inc/post_functions.php";
                         <li class="nav-item">
                             <a class="nav-link wow fadeIn" data-wow-delay="0.2s" href="index.php?p=posts">Beiträge</a>
                         </li>
-                        <?php if (forumIsLoggedIn()) { ?>
+                        <?php if (isUserLoggedIn()) { ?>
                             <li class="nav-item">
                                 <a class="nav-link wow fadeIn" data-wow-delay="0.3s" href="index.php?p=create">Beitrag erstellen</a>
                             </li>
-                            <?php if (forumIsAdmin()) { ?>
+                            <?php if (isUserAdmin()) { ?>
                                 <li class="nav-item">
                                     <a class="nav-link wow fadeIn" data-wow-delay="0.4s" href="index.php?p=admin">Admin Dashboard</a>
                                 </li>

@@ -1,19 +1,19 @@
 <?php
 
 // Check if a user is logged in
-function forumIsLoggedIn()
+function isUserLoggedIn()
 {
     return isset($_SESSION["userId"]);
 }
 
 // Check if the logged-in user is an admin
-function forumIsAdmin()
+function isUserAdmin()
 {
-    return forumIsLoggedIn() && isset($_SESSION["userRole"]) && $_SESSION["userRole"] === "admin";
+    return isUserLoggedIn() && isset($_SESSION["userRole"]) && $_SESSION["userRole"] === "admin";
 }
 
 // Sign up a new user with the given email, username, and password
-function forumSignup($email, $userName, $passWord)
+function userSignup($email, $userName, $passWord)
 {
     global $conn;
 
@@ -68,7 +68,7 @@ function forumSignup($email, $userName, $passWord)
 }
 
 // Log in a user with the given login input (email or username) and password
-function forumLogin($loginInput, $passWord)
+function userLogin($loginInput, $passWord)
 {
     global $conn;
 

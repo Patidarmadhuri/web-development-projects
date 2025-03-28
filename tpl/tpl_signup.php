@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $email = htmlspecialchars($email, ENT_QUOTES, 'UTF-8');
         $userName = htmlspecialchars($userName, ENT_QUOTES, 'UTF-8');
-        $result = forumSignup($email, $userName, $passWord);
+        $result = userSignup($email, $userName, $passWord);
         if ($result["success"]) {
             $htmlContent .= '<div class="alert alert-success wow fadeIn" data-wow-delay="0.2s">' . $result["message"] . ' Sie können sich jetzt <a href="index.php?p=login">anmelden</a>.</div>';
         } else {

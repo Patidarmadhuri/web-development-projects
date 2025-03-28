@@ -1,6 +1,6 @@
 <?php
 
-if (!forumIsLoggedIn()) {
+if (!isUserLoggedIn()) {
     header("Location: index.php?p=login");
     exit();
 }

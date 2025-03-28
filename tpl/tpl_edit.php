@@ -1,7 +1,7 @@
 <?php
 include_once "inc/post_functions.php"; 
 
-if (!forumIsLoggedIn()) {
+if (!isUserLoggedIn()) {
     $htmlContent = '<div class="alert alert-warning">Bitte <a href="index.php?p=login">anmelden</a>, um einen Beitrag zu bearbeiten.</div>';
     $tpl_index->set("content", $htmlContent);
     exit();
@@ -16,7 +16,7 @@ if (!isset($_GET["id"])) {
 $postId = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
 $postData = getPostById($conn, $postId); 
 
-if (!$postData || ($postData["p_user_id"] != $_SESSION["userId"] && !forumIsAdmin())) {
+if (!$postData || ($postData["p_user_id"] != $_SESSION["userId"] && !isUserAdmin())) {
     $htmlContent = '<div class="alert alert-danger">Beitrag nicht gefunden oder Sie haben keine Berechtigung, ihn zu bearbeiten.</div>';
     $tpl_index->set("content", $htmlContent);
     exit();

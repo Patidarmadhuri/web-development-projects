@@ -1,7 +1,7 @@
 <?php
 include_once "inc/post_functions.php";
 
-if (!forumIsLoggedIn()) {
+if (!isUserLoggedIn()) {
     header("Location: index.php?p=login");
     exit();
 }
@@ -20,7 +20,7 @@ if (!$postId) {
 }
 
 $postData = getPostById($conn, $postId);
-if (!$postData || ($postData["p_user_id"] != $_SESSION["userId"] && !forumIsAdmin())) {
+if (!$postData || ($postData["p_user_id"] != $_SESSION["userId"] && !isUserAdmin())) {
     $htmlContent = '<div class="alert alert-danger">Beitrag nicht gefunden oder Sie haben keine Berechtigung, ihn zu löschen.</div>';
     $tpl_index->set("content", $htmlContent);
     exit();
