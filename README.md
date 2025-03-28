@@ -168,8 +168,8 @@ Role-based access control
 CSRF protection tokens
 
 Admin Credentials 🔑
-Email: admin@forum.com
-Password: Admin@123
+Email: madhuri@gmail.com
+Password: admin@123
 
 Contributing 🤝
 Fork the repository
