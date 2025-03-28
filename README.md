@@ -1,6 +1,6 @@
 # AI Forum Project 🚀
 
-![AI Forum Banner](https://via.placeholder.com/1200x400.png?text=AI+Forum+Project+Demo)  
+![🎥 **Video Demo**](https://via.placeholder.com/1200x400.png?text=AI+Forum+Project+Demo)  
 *An interactive forum platform for discussion and content management*
 
 [![PHP Version](https://img.shields.io/badge/PHP-8.1%2B-777BB4?logo=php)](https://php.net/)
@@ -94,21 +94,22 @@ cd Website-Basis-Forum
 Database setup:
 
 sql
-Copy
+
 CREATE DATABASE ai_forum;
 USE ai_forum;
 SOURCE sql/ai_forum.sql;
 Configure connection:
 
 php
-Copy
+
 // inc/db_connect.php
 $conn = new mysqli("localhost", "root", "", "ai_forum");
 Start XAMPP and visit:
 
-Copy
 http://localhost/Website-Basis-Forum/index.php
+
 Database Schema 📊
+
 Users Table (tblusers)
 Column	Type	Description
 u_id	INT	Primary Key, Auto-Increment
@@ -116,6 +117,7 @@ u_username	VARCHAR(255)	Unique username
 u_password	VARCHAR(255)	Hashed password
 u_email	VARCHAR(255)	User email
 u_role	VARCHAR(50)	User role (user/admin)
+
 Posts Table (tblposts)
 Column	Type	Description
 p_id	INT	Primary Key, Auto-Increment
@@ -123,6 +125,7 @@ p_title	VARCHAR(255)	Post title
 p_content	TEXT	Post content
 p_created_at	DATETIME	Creation timestamp
 p_user_id	INT	Foreign Key (User ID)
+
 Comments Table (tblcomments)
 Column	Type	Description
 c_id	INT	Primary Key, Auto-Increment
@@ -130,8 +133,9 @@ c_content	TEXT	Comment content
 c_created_at	DATETIME	Creation timestamp
 c_post_id	INT	Foreign Key (Post ID)
 c_user_id	INT	Foreign Key (User ID)
+
 Project Structure 📂
-Copy
+
 Website-Basis-Forum/
 ├── css/
 │   ├── bootstrap.min.css
