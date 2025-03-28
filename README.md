@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # React App - Getting Started
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -114,4 +113,4 @@ Pull requests are welcome. Please ensure your code follows best practices and is
 License
 This project is open-source and available under the MIT License.
 
->>>>>>> f75aa423778287f615d7c373820c938050d094f0
+
