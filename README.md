@@ -1,6 +1,6 @@
 # AI Forum Project 🚀
 
-![🎥 **Video Demo**](https://via.placeholder.com/1200x400.png?text=AI+Forum+Project+Demo)  
+![🎥 **Video Demo**]()  
 *An interactive forum platform for discussion and content management*
 
 [![PHP Version](https://img.shields.io/badge/PHP-8.1%2B-777BB4?logo=php)](https://php.net/)
