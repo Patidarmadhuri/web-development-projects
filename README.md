@@ -1,6 +1,5 @@
 # AI Forum Project
 
-![AI Forum Banner](https://via.placeholder.com/1200x400.png?text=AI+Forum+Project)  
 *An interactive forum platform for users to create, view, and comment on posts.*
 
 ---
