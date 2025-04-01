@@ -52,8 +52,6 @@ A full-stack forum application developed as a university project, featuring:
 ### 🔐 Admin Dashboard
 - User management interface
 - Content moderation tools
-- Activity monitoring
-- System health checks
 
 ---
 
