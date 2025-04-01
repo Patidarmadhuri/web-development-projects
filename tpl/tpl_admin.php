@@ -1,5 +1,4 @@
 <?php
-// Admin dashboard for managing users, posts, and comments
 
 // Check if the user is logged in and is an admin
 if (!isUserLoggedIn() || !isUserAdmin()) {

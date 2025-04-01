@@ -1,10 +1,4 @@
-// if (typeof WOW !== 'undefined') {
-//     new WOW().init();
-// } else {
-//     console.warn('WOW.js is not loaded. Animations will not work.');
-// }
 
-// Back to Top Button Functionality
 const backToTopButton = document.getElementById('btnBackToTop');
 if (backToTopButton) {
     window.onscroll = function() {
