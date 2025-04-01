@@ -1,7 +1,7 @@
 <?php
 include_once "inc/post_functions.php";
 
-if (!forumIsLoggedIn()) {
+if (!isUserLoggedIn()) {
     header("Location: index.php?p=login");
     exit();
 }
@@ -11,7 +11,7 @@ $comment = null;
 
 if ($commentId) {
     $comment = forumGetCommentById($commentId);
-    if (!$comment || (!forumIsAdmin() && $comment["c_user_id"] != $_SESSION["userId"])) {
+    if (!$comment || (!isUserAdmin() && $comment["c_user_id"] != $_SESSION["userId"])) {
         header("Location: index.php?p=posts");
         exit();
     }

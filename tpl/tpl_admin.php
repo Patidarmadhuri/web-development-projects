@@ -2,7 +2,7 @@
 // Admin dashboard for managing users, posts, and comments
 
 // Check if the user is logged in and is an admin
-if (!forumIsLoggedIn() || !forumIsAdmin()) {
+if (!isUserLoggedIn() || !isUserAdmin()) {
     $htmlContent = "<div class='alert alert-danger'>Zugriff verweigert. Sie müssen ein Administrator sein, um auf diese Seite zuzugreifen.</div>";
     $tpl_index->set("content", $htmlContent);
     return;

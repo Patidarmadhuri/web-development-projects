@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($loginInput) || empty($passWord)) {
         $htmlContent .= '<div class="alert alert-danger wow fadeIn" data-wow-delay="0.2s">Bitte füllen Sie alle Felder aus.</div>';
     } else {
-        $result = forumLogin($loginInput, $passWord);
+        $result = userLogin($loginInput, $passWord);
         if ($result["success"]) {
             header("Location: index.php?p=home");
             exit();

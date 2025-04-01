@@ -9,7 +9,7 @@
         <nav>
             <a href="index.php?p=home">Home</a> |
             <a href="index.php?p=posts">Posts</a> |
-            <?php if (forumIsLoggedIn()) { ?>
+            <?php if (isUserLoggedIn()) { ?>
                 <a href="index.php?p=create">Create Post</a> |
                 <a href="index.php?p=logout">Logout (<?php echo htmlspecialchars($_SESSION["userName"]); ?>)</a>
             <?php } else { ?>

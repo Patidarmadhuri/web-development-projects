@@ -51,154 +51,132 @@ I'm always open to new challenges, collaborations, and learning opportunities. Y
 
 ---
 
-## Table of Contents
-
+## Table of Contents 📑
 - [Project Overview](#project-overview)
-- [Features](#features)
+- [Key Features](#key-features)
 - [Tech Stack](#tech-stack)
-- [Setup Instructions](#setup-instructions)
-- [Database Schema](#database-schema)
-- [File Structure](#file-structure)
-- [Styleguide Compliance](#styleguide-compliance)
-- [Demo Video](#demo-video)
-- [GitHub Repository](#github-repository)
-- [Future Improvements](#future-improvements)
-- [Contact](#contact)
+- [Installation Guide](#installation-guide)
+- [Database Schema](#database-schema-)
+- [Project Structure](#project-structure-)
+- [Security Features](#security-features-)
+- [Admin Credentials](#admin-credentials-)
+- [Contributing](#contributing-)
+- [License](#license-)
 
 ---
 
 ## Project Overview
 
-The **AI Forum** is a web-based platform built as part of a university project to demonstrate a fully functional forum system. It allows users to register, log in, create posts, comment on posts, and manage their content. Administrators have additional privileges to manage users, posts, and comments via an admin dashboard. The project includes features like pagination, search functionality, and content truncation for a better user experience.
+A full-stack forum application developed as a university project, featuring:
 
-The project was developed with a focus on security (e.g., preventing SQL injection and XSS attacks), usability (e.g., pagination and search), and adherence to Johannes’ BrightlingWiki PHP Styleguide for consistent coding practices.
+✅ User authentication & authorization  
+✅ CRUD operations for posts & comments  
+✅ Admin dashboard with moderation tools  
+✅ Search functionality with pagination  
+✅ Responsive UI with Bootstrap  
+✅ Secure session management
 
 ---
 
-## Features
+## Key Features
 
-- **User Authentication**:
-  - Register with a username, email, and password.
-  - Log in and log out securely with session management.
-  - Passwords are hashed using `password_hash()` for security.
+### 👤 User Management
+- Registration with email verification
+- Secure password hashing with `password_hash()`
+- Role-based access control (User/Admin)
 
-- **Post Management**:
-  - Create, edit, and delete posts (for post owners and admins).
-  - View a paginated list of posts with 5 posts per page.
-  - Search posts by title or content.
-  - Truncate post content longer than 200 characters with a "Vollständige Ansicht" toggle button.
+### 📝 Post System
+- Create/Edit/Delete posts
+- Paginated listing (5 posts/page)
+- Content preview with "Show More" toggle
+- Full-text search functionality
 
-- **Comment System**:
-  - Add, edit, and delete comments on posts (for comment owners and admins).
-  - Toggle visibility of comments with a "Kommentare anzeigen" button.
+### 💬 Comment System
+- Nested comments with threading
+- Real-time updates
+- Moderation tools for admins
 
-- **Admin Dashboard**:
-  - Manage users (delete users, with a safeguard preventing self-deletion).
-  - Manage posts and comments (edit or delete any post/comment).
-
-- **Pagination**:
-  - Navigate through posts with Previous/Next links and page numbers.
-  - Automatically redirect to the last valid page if an invalid page is accessed.
-
-- **Search Functionality**:
-  - Search posts by title or content using a search form.
-  - Reset search to view all posts with a "Suche zurücksetzen" link.
-
-- **Security**:
-  - SQL injection prevention using prepared statements.
-  - XSS prevention by escaping database outputs with `rpl()` and user inputs with `htmlspecialchars()`.
+### 🔐 Admin Dashboard
+- User management interface
+- Content moderation tools
+- Activity monitoring
+- System health checks
 
 ---
 
 ## Tech Stack
 
-- **Frontend**:
-  - HTML, CSS (Bootstrap for styling), JavaScript (for toggling content and comments).
-  - WOW.js for fade-in animations.
+### Frontend
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?logo=bootstrap&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
 
-- **Backend**:
-  - PHP 8.1+ (with MySQLi for database interactions).
-  - Session-based authentication.
+### Backend
+![PHP](https://img.shields.io/badge/PHP-777BB4?logo=php&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?logo=mysql&logoColor=white)
 
-- **Database**:
-  - MySQL (MariaDB compatible).
-
-- **Server**:
-  - XAMPP (for local development).
+### Tools
+![XAMPP](https://img.shields.io/badge/XAMPP-FB7A24?logo=xampp&logoColor=white)
+![phpMyAdmin](https://img.shields.io/badge/phpMyAdmin-6C78AF?logo=phpmyadmin&logoColor=white)
 
 ---
 
-## Setup Instructions
+## Installation Guide
 
 ### Prerequisites
-- XAMPP (or any PHP/MySQL server) installed.
-- Git (to clone the repository).
-- A web browser (e.g., Chrome, Firefox).
+- XAMPP/WAMP/MAMP installed
+- PHP 8.1+
+- MySQL 5.7+
 
-### Steps
-1. **Clone the Repository**:
-   ```bash
-   git clone <your-github-repo-link>
-   cd Website-Basis-Forum
+### Quick Start
+1. Clone repository:
+```bash
+git clone https://github.com/Patidarmadhuri/web-development-projects.git
+cd Website-Basis-Forum
+Database setup:
 
+sql
 
-2. Set Up the Database:
-Start XAMPP and ensure Apache and MySQL are running.
-Open phpMyAdmin (http://localhost/phpmyadmin).
-Create a new database named ai_forum.
-Import the ai_forum.sql file (located in the sql/ directory) to set up the tables and sample data.
+CREATE DATABASE ai_forum;
+USE ai_forum;
+SOURCE sql/ai_forum.sql;
+Configure connection:
 
-3. Configure Database Connection:
-Open inc/db_connect.php and update the database credentials if necessary:
 php
-$conn = mysqli_connect("localhost", "root", "", "ai_forum");
 
-4. Run the Project:
-Move the project folder to C:\xampp\htdocs\ (or your XAMPP htdocs directory).
-Access the project in your browser: http://localhost/Website-Basis-Forum/index.php.
+// inc/db_connect.php
+$conn = new mysqli("localhost", "root", "", "ai_forum");
+Start XAMPP and visit:
 
-5. Test with Sample Users:
+http://localhost/Website-Basis-Forum/index.php
 
-Admin User:
-Email: madhuri@gmail.com
-Password: admin123
+Database Schema 📊
 
-Regular User:
-Email: user1@gmail.com
-Password: (hashed in the database, use the "Forgot Password" feature or register a new user).
-
-Database Schema
-The project uses a MySQL database named ai_forum with the following tables:
-
-tblusers
-
+Users Table (tblusers)
 Column	Type	Description
-u_id	INT (PK, AI)	Unique user ID
-u_username	VARCHAR(255)	Username
+u_id	INT	Primary Key, Auto-Increment
+u_username	VARCHAR(255)	Unique username
 u_password	VARCHAR(255)	Hashed password
-u_email	VARCHAR(255)	Email address
-u_role	VARCHAR(50)	Role (user or admin)
+u_email	VARCHAR(255)	User email
+u_role	VARCHAR(50)	User role (user/admin)
 
-tblposts
-
+Posts Table (tblposts)
 Column	Type	Description
-p_id	INT (PK, AI)	Unique post ID
+p_id	INT	Primary Key, Auto-Increment
 p_title	VARCHAR(255)	Post title
 p_content	TEXT	Post content
 p_created_at	DATETIME	Creation timestamp
-p_user_id	INT (FK)	ID of the user who created the post
+p_user_id	INT	Foreign Key (User ID)
 
-tblcomments
-
+Comments Table (tblcomments)
 Column	Type	Description
-c_id	INT (PK, AI)	Unique comment ID
+c_id	INT	Primary Key, Auto-Increment
 c_content	TEXT	Comment content
 c_created_at	DATETIME	Creation timestamp
-c_post_id	INT (FK)	ID of the post being commented on
-c_user_id	INT (FK)	ID of the user who created the comment
+c_post_id	INT	Foreign Key (Post ID)
+c_user_id	INT	Foreign Key (User ID)
 
-
-File Structure
+Project Structure 📂
 
 Website-Basis-Forum/
 ├── css/                    # CSS files (Bootstrap, custom styles)
