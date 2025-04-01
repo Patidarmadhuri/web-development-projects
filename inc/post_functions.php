@@ -1,18 +1,17 @@
 <?php
-
 // Include guard to prevent multiple inclusions
 if (defined('POST_FUNCTIONS_INCLUDED')) {
     return;
 }
 define('POST_FUNCTIONS_INCLUDED', true);
 
-// Utility function to insert breaking points in text
+// Utility function to insert breaking points in text (converts newlines to <br> tags)
 function insertBreakingPoints($text)
 {
     return nl2br($text);
 }
 
-// Get posts with pagination
+// Get posts with pagination and optional search query
 function forumGetPosts($offset, $postsPerPage, $searchQuery = '')
 {
     global $conn;
@@ -57,7 +56,7 @@ function forumGetPosts($offset, $postsPerPage, $searchQuery = '')
     return $posts;
 }
 
-// Get total number of posts
+// Get the total number of posts, optionally filtered by search query
 function forumGetTotalPostsCount($searchQuery = '')
 {
     global $conn;
@@ -94,7 +93,7 @@ function forumGetTotalPostsCount($searchQuery = '')
     return $total;
 }
 
-// Get a post by its ID
+// Get a post by its ID, including the username of the poster
 function getPostById($conn, $postId)
 {
     $sql = "SELECT p.*, u.u_username 
@@ -113,7 +112,7 @@ function getPostById($conn, $postId)
     return $row;
 }
 
-// Create a new post
+// Create a new post with the current timestamp
 function forumCreatePost($userId, $title, $content)
 {
     global $conn;
@@ -131,7 +130,7 @@ function forumCreatePost($userId, $title, $content)
     return $success;
 }
 
-// Update a post
+// Update an existing post
 function forumUpdatePost($postId, $title, $content)
 {
     global $conn;
@@ -149,7 +148,7 @@ function forumUpdatePost($postId, $title, $content)
     return $success;
 }
 
-// Delete a post
+// Delete a post and its associated comments
 function forumDeletePost($postId)
 {
     global $conn;
@@ -179,12 +178,12 @@ function forumDeletePost($postId)
     return $success;
 }
 
-// Add a comment to a post
+// Add a comment to a post with the current timestamp
 function forumAddComment($postId, $userId, $content)
 {
     global $conn;
 
-    $sql = "INSERT INTO tblcomments (c_post_id, c_user_id, c_content) VALUES (?, ?, ?)";
+    $sql = "INSERT INTO tblcomments (c_post_id, c_user_id, c_content, c_created_at) VALUES (?, ?, ?, NOW())";
     $stmt = mysqli_prepare($conn, $sql);
     if (!$stmt) {
         return false;
@@ -197,7 +196,7 @@ function forumAddComment($postId, $userId, $content)
     return $success;
 }
 
-// Get comments for a specific post
+// Get all comments for a specific post, including the username of the commenter
 function forumGetCommentsByPostId($postId)
 {
     global $conn;
@@ -221,7 +220,7 @@ function forumGetCommentsByPostId($postId)
     return $comments;
 }
 
-// Get a comment by its ID
+// Get a comment by its ID, including the username of the commenter
 function forumGetCommentById($commentId)
 {
     global $conn;
@@ -244,7 +243,7 @@ function forumGetCommentById($commentId)
     return $comment;
 }
 
-// Update a comment
+// Update an existing comment
 function forumUpdateComment($commentId, $content)
 {
     global $conn;

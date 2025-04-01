@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $result = userLogin($loginInput, $passWord);
         if ($result["success"]) {
-            header("Location: index.php?p=home");
+            header("Location: index.php?p=posts");
             exit();
         } else {
             $htmlContent .= '<div class="alert alert-danger wow fadeIn" data-wow-delay="0.2s">' . $result["message"] . '</div>';
