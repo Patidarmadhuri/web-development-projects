@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Hello, I'm Madhuri Patidar 👩‍💻
 
 Welcome to my GitHub profile! I'm a passionate **Full-Stack Developer** with strong expertise in building modern and scalable web applications. I love writing clean, efficient, and maintainable code.
@@ -224,4 +223,4 @@ Website-Basis-Forum/
 │   └── tpl_register.php    # Registration page
 ├── index.php               # Entry point
 └── README.md               # Project documentation
->>>>>>> b20c19c (Initial commit: AI Forum project with README)
+
