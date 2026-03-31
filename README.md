@@ -38,7 +38,9 @@ Feel free to explore my repositories and let me know if you'd like to collaborat
 
 ## 🔗 Let's Connect
 
-I'm always open to new challenges, collaborations, and learning opportunities.
+I'm always open to new challenges, collaborations, and learning opportunities. You can reach out to me through GitHub or my [LinkedIn Profile](https://www.linkedin.com/in/madhuri-fullstack-developer/) or [Portfolio](https://my-portfolio-site-lyart-pi.vercel.app/).
+
+---
 
 ---
 
